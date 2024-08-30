@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<style>
+    .body {
+        background-color: grey;
+    }
+
+    .parent {
+        background-color: grey;
+        height: 900px;
+        justify-content: center;
+        display: flex;
+    }
+
+    .children {
+        background-color: white;
+        height: 600px;
+        width: 400px;
+        margin-top: 80px;
+        border: 2px solid black;
+    }
+
+    .input {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+
+    .userData {
+        margin-top: 70px;
+        font-size: 25px;
+    }
+
+    .btn{
+        height:30px;
+        width: 200px;
+        margin-top: 40px;
+        font-size: 20px
+    }
+    .TextData{
+        margin-top: 7px;
+        margin-bottom: 15px;
+    }
+</style>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body class="body">
+    <div class="parent">
+        <div class="children" align="center">
+            <h1> Profile </h1>
+            <hr />
+            <div class="userData" align="left">
+
+                Name: <br />
+                <h4 id="name" class="TextData"> Makar </h4> 
+
+                Age: <br />
+                <h4 id="age" class="TextData"> 17 </h4> 
+
+                Login: <br />
+                <h4 id="login" class="TextData"> Nedoprofi </h4>
+
+                Password: <br />
+                <h4 id="password" class="TextData" > ******** </h4>
+
+
+            </div>
+
+            <button class="btn" id="SaveAndExBtn"> save and exit </button>
+
+        </div>
+    </div>
+    <script>
+        async function GetData() {
+            const responce = await fetch("/users/data", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            })
+
+            const user = responce.json();
+
+            var name = document.getElementById("name");
+            var age = document.getElementById("age");
+            var login = document.getElementById("login");
+            var password = document.getElementById("password");
+
+            name.innerText = user.name;
+            age.innerText = user.age;
+            password.innerText = user.password;
+            login.innerText = user.login;
+        }
+
+        GetData();
+    </script>
+</body>
+</html>

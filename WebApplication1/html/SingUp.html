@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<style>
+    .body {
+        background-color: grey;
+    }
+
+    .parent {
+        background-color: grey;
+        height: 900px;
+        justify-content: center;
+        display: flex;
+    }
+
+    .children {
+        background-color: white;
+        height: 400px;
+        width: 400px;
+        margin-top: 200px;
+        border: 2px solid black;
+    }
+
+    .input {
+        margin-top: 10px;
+    }
+
+    .btn {
+        height: 30px;
+        width: 150px;
+        margin-top: 40px;
+    }
+
+    .userData {
+        margin-top: 20px;
+    }
+</style>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body class="body">
+    <div class="parent">
+        <div class="children" align="center">
+            <h1> Sing Up</h1>
+            <hr />
+            <div class="userData">
+
+                Name <br />
+                <input class="input" id="name" /> <br />
+                Age <br />
+                <input class="input" id="age" type="number"/> <br />
+
+                login <br />
+                <input class="input" id="login" /> <br />
+                password <br />
+                <input class="input" id="password" /> <br />
+
+                <button class="btn" id="SingUpBtn">Sing Up</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("SingUpBtn").addEventListener("click", AddUser);
+        async function AddUser() {
+            const responce = await fetch("/users/data", {
+                method: "POST",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    age: document.getElementById("age").value,
+                    login: document.getElementById("login").value,
+                    password: document.getElementById("password").value
+                })
+            });
+        } 
+    </script>
+</body>
+</html>

